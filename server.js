@@ -33,10 +33,16 @@ const decrypted = function (encMsg) {
 global.decrypted=decrypted;
 //connection 
 const connection = mysql.createConnection({
-  host: "localhost",
+    host: "remotemysql.com",
+  user: "4bzM4CxTgu",
+  password:"J9c5dLyBma",
+  database:"4bzM4CxTgu" /**/
+
+  /*  host: "localhost",
   user: "adminUser",
   password:decrypted("8ed38a5e342a0039f3667a57bf12a058"),
-  database:"kktkdb"
+  database:"kktkdb"*/
+ 
 });
 //connect to database
 connection.connect((err) =>{
@@ -85,7 +91,7 @@ InsertUserAct = function(Act="",UserXXX="") {
 	var TimeNow = dateNow.getHours() +":"+dateNow.getMinutes()+":"+dateNow.getSeconds();
 	var dateNowInput= dateNow.getFullYear() +"-"+(dateNow.getMonth()+1)+"-"+dateNow.getDate()+" "+TimeNow;
 	let data = {Date: dateNowInput, Time: TimeNow,User: UserXXX,Activity: Act};
-	let sql = "INSERT INTO tblUserAct SET ?";
+	let sql = "INSERT INTO tbluseract SET ?";
 	let query = connection.query(sql, data,(err, results) => {
 		if(err) throw err;
 		console.log('Insert User activity('+dateNowInput+','+	TimeNow+','+UserXXX+','+Act+')');
